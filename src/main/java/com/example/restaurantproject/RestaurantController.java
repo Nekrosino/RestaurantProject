@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 
 /**
- *  Klasa BiuroPodrozyController jest kontrolerem interfejsu użytkownika w aplikacji biura podróży.
+ *  Klasa RestaurantController jest kontrolerem interfejsu użytkownika w aplikacji sieci restauracji.
  *  Odpowiada za obsługę zdarzeń i logikę związaną z logowaniem i rejestracją użytkowników.
  */
 public class RestaurantController implements Initializable
@@ -52,7 +52,7 @@ public class RestaurantController implements Initializable
      private String password;
 
      /**
-      * Konstruktor aplikacji Biura Podrozy
+      * Konstruktor aplikacji
       */
      public RestaurantController() {
      }
@@ -171,6 +171,18 @@ public class RestaurantController implements Initializable
     PulpitController pulpitController = loader.getController();
     pulpitController.setLogin(login);  // Ustawienie wartości pola login
     pulpitController.setPassword(password);
+
+         Kelner kelner1 = new Kelner();
+         kelner1.setImie(login);
+         kelner1.setNazwisko("Sochacki");
+         kelner1.setEmail("konradsochacki@wp.pl");
+         kelner1.setId(1);
+         kelner1.setStanowisko("kelner");
+         kelner1.setNumerTelefonu("111222333");
+
+         System.out.println("test" + kelner1.getImie());
+
+
     pulpitController.initialize(null, null); // Manually call the initialize method
 
 

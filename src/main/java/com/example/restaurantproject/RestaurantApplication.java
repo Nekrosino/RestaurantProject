@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- *  Klasa główna aplikacji BiuroPodrozyApplication, która rozszerza klasę Application.
- *  Jest to część kodu aplikacji biura podróży, która odpowiada za uruchomienie interfejsu graficznego użytkownika.
+ *  Klasa główna aplikacji RestaurantApplication, która rozszerza klasę Application.
+ *  Jest to część kodu aplikacji sieci restauracji, która odpowiada za uruchomienie interfejsu graficznego użytkownika.
  */
 public class RestaurantApplication extends Application {
 
@@ -28,6 +28,7 @@ public class RestaurantApplication extends Application {
         stage.getIcons().add(new Image(("restaurant.png")));
         String css=this.getClass().getResource("style.css").toExternalForm();
         loginScene.getStylesheets().add(css);
+        loginScene.getStylesheets().add(css);
         stage.setScene(loginScene);
         stage.show();
     }
@@ -40,3 +41,4 @@ public class RestaurantApplication extends Application {
         launch();
     }
 }
+

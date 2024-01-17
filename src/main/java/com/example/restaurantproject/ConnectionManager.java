@@ -41,6 +41,7 @@ public class ConnectionManager {
             sessionId = response.split(" ")[1];
             System.out.println("Zalogowano pomyślnie. SESSION ID: " + sessionId);
             return sessionId;
+
             // Wywołanie innych operacji związanych z połączeniem
         } else {
             System.out.println("Błąd logowania");
@@ -174,20 +175,14 @@ public class ConnectionManager {
         }
     }
 
-    /**
-     *  Metoda ta wysyła żądanie pobrania danych o wycieczce o określonym identyfikatorze do serwera.
-     * @param idwycieczki identyfikator wycieczki
-     * @return Jeśli żądanie powiedzie się, metoda zwraca odpowiedź od serwera, która zawiera dane wycieczki.
-     * @throws IOException
-     */
-    public String getWycieczka(String idwycieczki) throws IOException{
+
+    public String zamowDanie(String idDanie) throws IOException{
         clientSockett = new Socket("localhost", 1234);
         out = new PrintWriter(clientSockett.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
-        out.println("GETWYCIECZKA " + idwycieczki);
+        out.println("ZAMOWDANIE "+idDanie);
 
         String response = in.readLine();
-        if (response.startsWith("GETWYCIECZKA")) {
+        if (response.startsWith("ZAMOWDANIE")) {
             String parts = response;
             System.out.println("Otrzymano pomyślnie dane dla użytkownika: "+parts);
             return parts;
@@ -199,17 +194,4 @@ public class ConnectionManager {
 
     }
 
-    public void buyWycieczka(String idklienta,String idwycieczki, String data_rezerwacji) throws IOException {
-        clientSockett = new Socket("localhost", 1234);
-        out = new PrintWriter(clientSockett.getOutputStream(), true);
-       // in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
-        out.println("BUYWYCIECZKA "+idklienta+" "+idwycieczki+" "+data_rezerwacji);
-    }
-
-    public void paymentWycieczka(String cena, String login) throws IOException{
-        clientSockett = new Socket("localhost", 1234);
-        out = new PrintWriter(clientSockett.getOutputStream(), true);
-        out.println("PAYMENT "+cena+" "+login);
-    }
-    // Pozostałe metody związane z połączeniem
 }

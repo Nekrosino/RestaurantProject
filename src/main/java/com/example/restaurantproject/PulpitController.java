@@ -16,21 +16,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Klasa PulpitController rozszerzająca klasę BiuroPodrozyController i implementująca interfejs Initializable
+ * Klasa PulpitController rozszerzająca klasę RestaurantController i implementująca interfejs Initializable
  */
 public class PulpitController extends RestaurantController implements Initializable {
     private ConnectionManager connectionManager;
     @FXML
     private Label helloLabel;
 
-    @FXML
-    private Label nazwaWycieczki;
-
-    @FXML
-    private Label poczatekWycieczki;
-
-    @FXML
-    private Label koniecWycieczki;
     private Stage stage;
     private Scene scene;
     protected String login;
@@ -38,22 +30,16 @@ public class PulpitController extends RestaurantController implements Initializa
 
     public String parts;
 
-    public String daneWycieczka;
-
+    public String daneZamowDanie;
     public String idWycieczka;
 
+    public String idDanie;
 
-    public String[] wycieczkaTab;
+    public String[] danieTab;
 
     public String nazwa;
-    public String dataRozpoczecia;
-    public String dataZakonczenia;
-    public String cenaWycieczka;
 
-    public String ubezpieczenieWycieczka; //dodane
 
-    @FXML
-    private Label Stegna;
     @FXML
     private Button button1;
     @FXML
@@ -101,55 +87,6 @@ public class PulpitController extends RestaurantController implements Initializa
         return parts;
     }
 
-    public void setNazwaWycieczki(String nazwa) {
-        this.nazwa = nazwa;
-    }
-
-    public String getNazwaWycieczki() {
-        return nazwa;
-    }
-
-    public void setDataRozpoczecia(String dataRozpoczecia) {
-        this.dataRozpoczecia = dataRozpoczecia;
-    }
-
-    public String getDataRozpoczecia() {
-        return dataRozpoczecia;
-    }
-
-    public void setDataZakonczenia(String dataZakonczenia) {
-        this.dataZakonczenia = dataZakonczenia;
-    }
-
-    public String getDataZakonczenia() {
-        return dataZakonczenia;
-    }
-
-    public void setCenaWycieczka(String cenaWycieczka) {
-        this.cenaWycieczka = cenaWycieczka;
-    }
-
-    public String getCenaWycieczka() {
-        return cenaWycieczka;
-    }
-
-    public void setIDwycieczka(String idWycieczka) {
-        this.idWycieczka = idWycieczka;
-    }
-
-    public String getIDwycieczka() {
-
-        return idWycieczka;
-    }
-
-    public void setUbezpieczenie(String ubezpieczenieWycieczka) { ///DODANE
-        this.ubezpieczenieWycieczka = ubezpieczenieWycieczka;
-    }
-
-    public String getUbezpieczenieWycieczka() {   ///DODANE
-        return ubezpieczenieWycieczka;
-    }
-
 
     /**
      * Metoda przełączająca scenę na ekran logowania.
@@ -166,6 +103,7 @@ public class PulpitController extends RestaurantController implements Initializa
         scene = stage.getScene();
         scene.setRoot(root);
         stage.show();
+
     }
 
     /**
@@ -216,30 +154,16 @@ public class PulpitController extends RestaurantController implements Initializa
      * @param e obsługa zdarzeń na myszce
      * @throws IOException
      */
-    public void print(MouseEvent e) throws IOException {
-        idWycieczka = "1";
-        getDaneWycieczka();
 
-        nazwa = wycieczkaTab[1];
-        dataRozpoczecia = wycieczkaTab[2];
-        dataZakonczenia = wycieczkaTab[3];
 
-        nazwaWycieczki.setText(nazwa);
-        poczatekWycieczki.setText(dataRozpoczecia);
-        koniecWycieczki.setText(dataZakonczenia);
+    public void getDaneZamowDanie() throws IOException {
+        System.out.println(" 1 etap " + idDanie);
+        daneZamowDanie = connectionManager.zamowDanie(idDanie);
+        danieTab = daneZamowDanie.split(" ");
+
 
     }
 
-    /**
-     * Metoda pobierająca dane wycieczki z bazy danych
-     *
-     * @throws IOException
-     */
-    public void getDaneWycieczka() throws IOException {
-        daneWycieczka = connectionManager.getWycieczka(idWycieczka);
-        wycieczkaTab = daneWycieczka.split(" ");
-
-    }
 
     /**
      * Metoda czyszcząca zawartośc etykiet, po zjechaniu myszą z obiektu
@@ -248,11 +172,6 @@ public class PulpitController extends RestaurantController implements Initializa
      * @throws IOException
      */
 
-    public void dprint(MouseEvent e) throws IOException {
-        nazwaWycieczki.setText(" ");
-        poczatekWycieczki.setText(" ");
-        koniecWycieczki.setText(" ");
-    }
 
 
     public void addToBasket(ActionEvent e) throws IOException {
@@ -268,63 +187,54 @@ public class PulpitController extends RestaurantController implements Initializa
       //  String parts = connectionManager.getProfileData(login,password);
       //  userProfileController.setParts(parts);
 
-        /*
+
         Button button = (Button) e.getSource();
         if(button.getId().equals("button1"))
         {
-            idWycieczka ="1";
-            //wysylamy nazwe wycieczki
-            //wysylamy zdjecie
-            //wysylamy cene
-            //wysylamy opis
-            //date rozpoczecia
-            //date zakonczenia
-            getDaneWycieczka();
+            idDanie ="1";
+            getDaneZamowDanie();
+
+
 
 
         }
         else if(button.getId().equals("button2"))
         {
-            idWycieczka = "2";
-            getDaneWycieczka();
+            idDanie = "2";
+            getDaneZamowDanie();
 
         }
         else if(button.getId().equals("button3"))
         {
-            idWycieczka ="3";
-            getDaneWycieczka();
+            idDanie ="3";
+
+            getDaneZamowDanie();
         }
         else if(button.getId().equals("button4"))
         {
-            idWycieczka="4";
-            getDaneWycieczka();
+            idDanie="4";
+            getDaneZamowDanie();
         }
         else if(button.getId().equals("button5"))
         {
-            idWycieczka="5";
-            getDaneWycieczka();
+            idDanie="5";
+            getDaneZamowDanie();
         }
         else if(button.getId().equals("button6"))
         {
-            idWycieczka="6";
-            getDaneWycieczka();
+            idDanie="6";
+            getDaneZamowDanie();
         }
-        nazwa = wycieczkaTab[1];
-        dataRozpoczecia = wycieczkaTab[2];
-        dataZakonczenia=wycieczkaTab[3];
-        cenaWycieczka=wycieczkaTab[4];
-        ubezpieczenieWycieczka=wycieczkaTab[5];
+        nazwa = danieTab[1];
 
 
-        basketController.setLogin(login);
-        basketController.setNazwaWycieczki(nazwa);
-        basketController.setDataRozpoczecia(dataRozpoczecia);
-        basketController.setDataZakonczenia(dataZakonczenia);
-        basketController.setCenaWycieczka(cenaWycieczka);
-       basketController.setIDwycieczka(idWycieczka);
-       basketController.setUbezpieczenie(ubezpieczenieWycieczka);
 
-       */
+
+
+        System.out.println("test" + nazwa);
+
+
+
         basketController.initialize(null, null); // Manually call the initialize method
 
 

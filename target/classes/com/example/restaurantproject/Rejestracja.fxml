@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.restaurantproject.RegisterController">
+    <children>
+        <VBox prefHeight="596.0" prefWidth="375.0" style="-fx-background-color: #81BECE;" styleClass="Background" stylesheets="@style.css">
+            <effect>
+                <Blend mode="SRC_ATOP" />
+            </effect>
+            <children>
+                <AnchorPane prefHeight="598.0" prefWidth="375.0" styleClass="Background">
+                    <children>
+                        <Circle layoutX="196.0" layoutY="245.0" radius="130.0" stroke="BLACK" strokeType="INSIDE">
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                            <fill>
+                                <RadialGradient centerX="0.505524861878453" centerY="0.5521327014218009" radius="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.28935185074806213" green="0.5719013810157776" blue="0.6578947305679321" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </RadialGradient>
+                            </fill>
+                        </Circle>
+                        <Label alignment="CENTER" layoutX="21.0" layoutY="367.0" prefHeight="89.0" prefWidth="354.0" text="Restaurant Management System" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="19.0" />
+                            </font>
+                        </Label>
+                  <ImageView fitHeight="182.0" fitWidth="189.0" layoutX="105.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../restaurant.png" />
+                     </image>
+                  </ImageView>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <AnchorPane layoutX="487.0" layoutY="483.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0" stylesheets="@style.css">
+            <children>
+                <Button fx:id="Register" alignment="CENTER" layoutX="21.0" layoutY="3.0" mnemonicParsing="false" onAction="#switchToLoginScene" text="Submit" />
+            <Button layoutX="114.0" layoutY="3.0" mnemonicParsing="false" onAction="#returnToLoginScene" text="Return" />
+            </children>
+        </AnchorPane>
+        <Label fx:id="loginText" alignment="CENTER" layoutX="302.0" layoutY="86.0" prefHeight="53.0" prefWidth="560.0" text="Register" textAlignment="CENTER">
+            <font>
+                <Font name="Tahoma Bold" size="39.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="0.12796208530805686" endY="1.0" startX="0.17061611374407584">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.0117647061124444" green="0.3843137323856354" blue="0.501960813999176" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <AnchorPane layoutX="487.0" layoutY="175.0" prefHeight="308.0" prefWidth="189.0" stylesheets="@style.css">
+            <children>
+            <TextField fx:id="NameField" alignment="CENTER" layoutX="20.0" layoutY="2.0" promptText="Imię" />
+            <TextField fx:id="SurnameField" alignment="CENTER" layoutX="20.0" layoutY="39.0" promptText="Nazwisko" />
+            <TextField fx:id="AdresField" alignment="CENTER" layoutX="20.0" layoutY="72.0" promptText="Miasto" />
+            <TextField fx:id="PhoneField" alignment="CENTER" layoutX="20.0" layoutY="107.0" prefHeight="25.0" prefWidth="149.0" promptText="Numer Telefonu" />
+                <TextField fx:id="LoginField" alignment="CENTER" layoutX="20.0" layoutY="142.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz login" />
+                <PasswordField fx:id="PasswordField" alignment="CENTER" layoutX="20.0" layoutY="176.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz hasło" />
+            <PasswordField fx:id="RepeatPasswordField" alignment="CENTER" layoutX="20.0" layoutY="217.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz ponownie hasło" />
+            <TextField fx:id="EmailField" alignment="CENTER" layoutX="20.0" layoutY="257.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz e-mail" />
+            </children>
+        </AnchorPane>
+      <Label fx:id="ErrorMessage" alignment="CENTER" layoutX="374.0" layoutY="543.0" prefHeight="17.0" prefWidth="428.0" textFill="#d00000">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
